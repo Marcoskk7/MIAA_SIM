@@ -24,7 +24,7 @@ cup_config = {
 bottle_config = {
     "urdf_path": str(asset_dir / "object/3517/mobility.urdf"),
     "object_name": "bottle",
-    "position": [0.5, 0, 0],
+    "position": [1.0, 0, 1],
     "orientation": [1, 0, 0, 0]
 }
 drawer_config = {

@@ -5,7 +5,7 @@ panda_config = {
     "urdf_path": str(asset_dir / "robot_description/panda/panda_v3.urdf"),
     "srdf_path": str(asset_dir / "robot_description/panda/panda_v3.srdf"),
     "hand_name": "panda_hand",
-    "position": [0, 0, 0],
+    "position": [0, 0, 1],
     "orientation": [1, 0, 0, 0]
 }
 

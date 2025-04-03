@@ -2,10 +2,12 @@ import sapien
 import cv2
 import time
 import numpy as np
+
 class Controller:
     def __init__(self):
         self.scene = sapien.Scene()
         self.scene.add_ground(0)
+
 
         self.scene.set_ambient_light([0.5, 0.5, 0.5])
         self.scene.add_directional_light([0, 1, -1], [0.5, 0.5, 0.5])
@@ -14,11 +16,11 @@ class Controller:
         self.viewer.set_camera_xyz(x=-2, y=0, z=1)
         self.viewer.set_camera_rpy(r=0, p=-0.3, y=0)
         
-        near, far = 0.1, 100
+        near, far = 1, 50
         width, height = 640, 480
 
         # Compute the camera pose by specifying forward(x), left(y) and up(z)
-        cam_pos = np.array([-2, -2, 3])
+        cam_pos = np.array([3, 0, 3])
         forward = -cam_pos / np.linalg.norm(cam_pos)
         left = np.cross([0, 0, 1], forward)
         left = left / np.linalg.norm(left)
@@ -31,7 +33,7 @@ class Controller:
             name="camera",
             width=width,
             height=height,
-            fovy=np.deg2rad(35),
+            fovy=np.deg2rad(60),
             near=near,
             far=far,
         )
@@ -40,6 +42,7 @@ class Controller:
         # 初始化视频编码器
         fourcc = cv2.VideoWriter_fourcc(*'XVID')
         self.out = cv2.VideoWriter("output.avi", fourcc, 30.0, (640, 480))
+
         
     def add_entity(self, config, fix_root_link):
         loader = self.scene.create_urdf_loader()
@@ -87,4 +90,7 @@ class Controller:
                 robot.set_qf(qf)
             self.scene.update_render()
             self.viewer.render()
+
+
+
             
